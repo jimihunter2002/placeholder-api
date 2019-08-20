@@ -28,9 +28,10 @@ describe('API Test Automation', () => {
     test('GET:Fetches a newly created user from user endpoint', async () => {
         const expected = { "content-type": "application/json; charset=utf-8" };
         const userId = 11;
-        const result = await placeholder.getUser(userId)
-        expect(result.status).toBe(200);
-        expect(result.headers).toMatchObject(expected);
+        const result = await placeholder.getUser(userId);
+
+        expect(result.response.status).toBe(200);
+        expect(result.response.headers).toMatchObject(expected);
     });
 });
 
@@ -62,15 +63,16 @@ describe('POST: /posts API tests', () => {
 
         //Test Failed (BUG-02-CREATED_POST_NOT_FOUND): created post not on server
         const postId = 101;
-        const result = await placeholder.getPost(postId)
-        expect(result.status).toBe(200);
+        const result = await placeholder.getPost(postId);
+
+        expect(result.response.status).toBe(200);
         expect(result.data).not.toEqual({})
 
     });
 
     test('GET:Fetches non existent post by post id', async () => {
         const postId = 1000;
-        const result = await placeholder.getPost(postId)
+        const result = await placeholder.getPost(postId);
 
         expect(result.response.status).not.toBe(200);
         expect(result.response.status).toBe(404);
@@ -105,8 +107,8 @@ describe('POST: /posts API tests', () => {
         }
         const result = await placeholder.updatePost(payload, payload.id, options);
 
-        expect(result.response.status).not.toBe(200);
-        expect(result.response.status).toBe(415);
+        expect(result.status).toBe(415);
+        expect(result.status).not.toBe(200);
     });
 
 });
@@ -137,9 +139,9 @@ describe('Update and Delete API test', () => {
     test('GET:Fetches a post after DELETE operation by post id', async () => {
         //  Test Failed (BUG-04-DELETED_POST_STILL_EXIST): post not deleted on server
         const postId = 1;
-        const result = await placeholder.getPost(postId)
-        expect(result.response.status).not.toBe(200);
-        expect(result.response.status).toBe(404);
+        const result = await placeholder.getPost(postId);
+        expect(result.status).toBe(404);
+
 
 
     });
