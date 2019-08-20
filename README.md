@@ -12,7 +12,7 @@ After the pre-requisite steps above have been met, follow the steps below in ord
 run the below commands from the terminal
 
 1. clone the repository with the command ```git clone git@github.com:jimihunter2002/placeholder-api.git```
-2. navigate to the root of the project which is api-testing-framework folder
+2. navigate to the root of the project which is placeholder-api folder
 3. run this command to install dependenices: ```npm install```
 4. run this command to start the test run ```npm test```
 
